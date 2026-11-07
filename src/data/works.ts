@@ -2,30 +2,25 @@ export type WorkCategory = 'Karakter' | 'Poster & Branding' | 'Ilustrasi'
 
 export interface WorkItem {
   id: string
+  code: string
   title: string
   category: WorkCategory
   year: string
   client?: string
   description: string
-  aspect: 'square' | 'portrait' | 'landscape'
-  accentColor: string
-  bgGradient: string
-  tags: string[]
-  // Jalur gambar asli di folder /public/works (opsional, jika kosong gunakan artwork ilustrasi bawaan)
-  imageSrc?: string
-  // Detail naratif untuk lightbox
   story: string
-  // Jenis placeholder visual bawaan
+  tags: string[]
   placeholderType: 
-    | 'momo-mascot'
-    | 'kopi-senja'
-    | 'hutan-fantasi'
-    | 'ruang-baca'
-    | 'festival-musim-semi'
-    | 'robot-kebun'
-    | 'stiker-kucing'
-    | 'kemasan-teh'
-    | 'poster-bumi'
+    | 'bear'
+    | 'coffee-cup'
+    | 'mountains'
+    | 'robot'
+    | 'kite'
+    | 'window'
+    | 'jar'
+    | 'cat'
+    | 'flower'
+  imageSrc?: string
 }
 
 export const CATEGORIES: ('Semua' | WorkCategory)[] = [
@@ -37,138 +32,111 @@ export const CATEGORIES: ('Semua' | WorkCategory)[] = [
 
 export const WORKS: WorkItem[] = [
   {
-    id: 'momo-mascot',
-    title: 'Momo & Kawan Gembira',
+    id: 'momo-the-bear',
+    code: 'ART-01 // CHAR',
+    title: 'Momo Si Beruang Koki',
     category: 'Karakter',
-    year: '2024',
-    client: 'Penerbit Ceria Anak',
-    description: 'Desain maskot beruang kecil pembuat kue untuk seri buku cerita anak interaktif.',
-    story: 'Momo dirancang dengan bentuk siluet bulat yang memancarkan kehangatan dan rasa ingin tahu tinggi. Koleksi ekspresinya dirancang untuk mudah direlasikan oleh anak usia 4-8 tahun.',
-    aspect: 'portrait',
-    accentColor: '#FFAF87',
-    bgGradient: 'from-[#FFD8C2] via-[#FFEADB] to-[#FFF0E6]',
-    tags: ['Mascot', 'Buku Anak', 'Digital Art'],
-    placeholderType: 'momo-mascot',
-    imageSrc: ''
+    year: '2026',
+    client: 'Studio Ceria Komik',
+    description: 'Maskot beruang kecil bertopi chef dengan garis tinta manga tebal dan arsiran halftone screentone.',
+    story: 'Karakter beruang bulat dengan topi koki, digambar menggunakan pendekatan tinta hitam-putih manga klasik yang diadaptasi penuh ke warna cobalt murni.',
+    tags: ['Manga Ink', 'Character Design', 'Screentone'],
+    placeholderType: 'bear'
   },
   {
-    id: 'kopi-senja-branding',
-    title: 'Kopi Teduh & Roti Hangat',
+    id: 'kopi-dan-aroma',
+    code: 'ART-02 // POSTER',
+    title: 'Kopi Hangat & Croissant',
     category: 'Poster & Branding',
-    year: '2024',
-    client: 'Teduh Bakery & Coffee',
-    description: 'Identitas visual, poster menu, dan kemasan kopi botol bergaya nostalgia hangat.',
-    story: 'Menggabungkan lettering tangan bergaya retro lembut dengan ilustrasi cangkir kopi mengepul dan croissant empuk untuk menciptakan kesan "comfort space" bagi pengunjung kafe.',
-    aspect: 'square',
-    accentColor: '#FF8A7A',
-    bgGradient: 'from-[#FFD8C2] via-[#FFB2A7] to-[#DCCFF5]',
-    tags: ['Branding', 'Lettering', 'Packaging'],
-    placeholderType: 'kopi-senja',
-    imageSrc: ''
+    year: '2026',
+    client: 'Teduh Roastery',
+    description: 'Ilustrasi cangkir kopi mengepul dengan motif halftone melingkar dan siluet croissant grafis.',
+    story: 'Mengambil energi pagi hari ke dalam bentuk poster zine kontras tinggi: cangkir bergaris tebal dengan aroma uap ekspresif dan titik screentone dinamis.',
+    tags: ['Zine Art', 'Food Graphic', 'Line Art'],
+    placeholderType: 'coffee-cup'
   },
   {
-    id: 'hutan-fantasi',
-    title: 'Penjaga Lembah Kunang-Kunang',
+    id: 'pegunungan-malam',
+    code: 'ART-03 // ILUS',
+    title: 'Puncak Lembah & Bulan Sabit',
     category: 'Ilustrasi',
-    year: '2024',
-    client: 'Personal Project',
-    description: 'Ilustrasi editorial pemandangan malam magis dengan nuansa warna mint dan ungu lembut.',
-    story: 'Eksplorasi pencahayaan ambient alami di mana ribuan kunang-kunang menerangi danau kecil tempat tinggal roh hutan bertelinga rusa.',
-    aspect: 'landscape',
-    accentColor: '#A3E7C9',
-    bgGradient: 'from-[#CDEFE0] via-[#DCCFF5] to-[#EEFAF4]',
-    tags: ['Editorial', 'Environment', 'Fantasy'],
-    placeholderType: 'hutan-fantasi',
-    imageSrc: ''
+    year: '2025',
+    client: 'Indie Sci-Fi Zine',
+    description: 'Pemandangan pegunungan geometris dramatis di bawah langit malam cobalt bertabur bintang.',
+    story: 'Pola arsiran diagonal dan siluet tajam menciptakan ilusi kedalaman ruang angkasa tanpa memakai warna abu-abu sama sekali.',
+    tags: ['Landscape', 'Hatching', 'Geometric'],
+    placeholderType: 'mountains'
   },
   {
-    id: 'robot-kebun',
-    title: 'Boti Si Robot Penyiram Bunga',
+    id: 'boti-robot-taman',
+    code: 'ART-04 // CHAR',
+    title: 'Boti Robot Penjaga Bunga',
     category: 'Karakter',
-    year: '2023',
-    client: 'EcoKids Studio',
-    description: 'Karakter robot kuno berbahan kaleng daur ulang yang menyukai tanaman bunga matahari.',
-    story: 'Karakter dengan kontras bahan logam dingin dan kehangatan hati seorang tukang kebun kecil. Dirancang dengan proporsi ramah anak dan palet warna bumi.',
-    aspect: 'portrait',
-    accentColor: '#C5B0EE',
-    bgGradient: 'from-[#DCCFF5] via-[#EADBFA] to-[#CDEFE0]',
-    tags: ['Character Concept', 'Game Asset', 'Sticker'],
-    placeholderType: 'robot-kebun',
-    imageSrc: ''
+    year: '2025',
+    client: 'Eco Mecha Project',
+    description: 'Robot mekanis kuno berwajah ramah dengan mata menyala dan pot bunga matahari di lengannya.',
+    story: 'Desain karakter mecha ramah dengan tekstur screenprint vintage dan pola titik-titik mekanik yang tajam.',
+    tags: ['Mecha Art', 'Manga Mascot', 'Halftone'],
+    placeholderType: 'robot'
   },
   {
-    id: 'festival-musim-semi',
-    title: 'Poster Festival Layang-Layang',
+    id: 'festival-layang-layang',
+    code: 'ART-05 // POSTER',
+    title: 'Layang-Layang Angkasa',
     category: 'Poster & Branding',
-    year: '2023',
-    client: 'Dinas Pariwisata & Komunitas Kreatif',
-    description: 'Poster promosi festival tahunan dengan komposisi langit biru pastel penuh dinamika.',
-    story: 'Menggambarkan puluhan bentuk layangan tradisional dan kontemporer yang menari di angkasa, mengajak keluarga berkumpul di tepi pantai di akhir pekan cerah.',
-    aspect: 'portrait',
-    accentColor: '#58B98F',
-    bgGradient: 'from-[#EEFAF4] via-[#CDEFE0] to-[#FFD8C2]',
-    tags: ['Poster Event', 'Komposisi', 'Vector Art'],
-    placeholderType: 'festival-musim-semi',
-    imageSrc: ''
+    year: '2025',
+    client: 'Festival Musim Angin',
+    description: 'Komposisi layangan berlian geometris melayang dengan pita gelombang dinamis di langit terbuka.',
+    story: 'Dinamika gerak angin diwujudkan lewat kontras garis kecepatan (speedlines) khas komik laga Jepang.',
+    tags: ['Speedlines', 'Graphic Poster', 'Vector Ink'],
+    placeholderType: 'kite'
   },
   {
-    id: 'ruang-baca-senja',
-    title: 'Bilik Buku di Sudut Loteng',
+    id: 'jendela-loteng',
+    code: 'ART-06 // ILUS',
+    title: 'Bilik Jendela Studio',
     category: 'Ilustrasi',
-    year: '2023',
-    client: 'Majalah Literasi Pustaka',
-    description: 'Ilustrasi cerita bertema kenyamanan membaca buku di loteng ditemani hujan rintik-rintik.',
-    story: 'Menonjolkan detail-detail kecil: tumpukan buku bersampul lusuh, tanaman pothos yang menjuntai, lampu meja kuning temaram, dan jendela berembun.',
-    aspect: 'square',
-    accentColor: '#FFAF87',
-    bgGradient: 'from-[#FFF0E6] via-[#FFD8C2] to-[#DCCFF5]',
-    tags: ['Editorial', 'Cozy Art', 'Lofi Aesthetic'],
-    placeholderType: 'ruang-baca',
-    imageSrc: ''
+    year: '2025',
+    client: 'Literasi Visual',
+    description: 'Sudut meja kerja dengan lampu belajar menyala, buku bertumpuk, dan pot tanaman menjuntai.',
+    story: 'Studi pencahayaan negatif: cahaya lampu digambarkan dengan bidang putih solid memotong latar belakang cobalt pekat.',
+    tags: ['Negative Space', 'Interior Art', 'Cozy Manga'],
+    placeholderType: 'window'
   },
   {
-    id: 'kemasan-teh-organik',
-    title: 'Seri Teh Herbal Kembang Sari',
+    id: 'toples-botanikal',
+    code: 'ART-07 // POSTER',
+    title: 'Toples Sari Herbal',
     category: 'Poster & Branding',
-    year: '2024',
-    client: 'Kembang Sari Botanicals',
-    description: 'Desain label kaleng dan ilustrasi botanical untuk tiga varian teh bunga lokal.',
-    story: 'Gaya goresan pensil warna bertekstur dengan sentuhan kontur modern. Tiap varian membawa palet pastel khas seperti Chamomile Peach, Lavender Mint, dan Rosella Lilac.',
-    aspect: 'portrait',
-    accentColor: '#FF8A7A',
-    bgGradient: 'from-[#FFD8C2] via-[#CDEFE0] to-[#FFF8F1]',
-    tags: ['Packaging', 'Botanical Art', 'Visual Branding'],
-    placeholderType: 'kemasan-teh',
-    imageSrc: ''
+    year: '2026',
+    client: 'Botanika Artisan',
+    description: 'Kemasan toples kaca dengan kelopak chamomile mekar dalam arsiran tinta linocut kontemporer.',
+    story: 'Kombinasi gaya cetak manual linocut dan estetika poster grafis modern dengan tipografi bold tegas.',
+    tags: ['Packaging', 'Linocut Ink', 'Botanical'],
+    placeholderType: 'jar'
   },
   {
-    id: 'stiker-kucing-ekspresif',
-    title: 'Sticker Pack: Hari Sibuk Si Meong',
+    id: 'kucing-ekspresif',
+    code: 'ART-08 // CHAR',
+    title: 'Stiker Kucing Mengantuk',
     category: 'Karakter',
-    year: '2023',
-    client: 'Line Creators / WhatsApp Stickers',
-    description: 'Set 16 stiker digital bertema kehidupan pekerja kreatif dari sudut pandang kucing.',
-    story: 'Ekspresi dramatis saat deadline mendekat, kepuasan meneguk es kopi, hingga mode santai berguling di lantai studio.',
-    aspect: 'square',
-    accentColor: '#C5B0EE',
-    bgGradient: 'from-[#DCCFF5] via-[#FFF0E6] to-[#CDEFE0]',
-    tags: ['Sticker Pack', 'Digital Merch', 'Character Design'],
-    placeholderType: 'stiker-kucing',
-    imageSrc: ''
+    year: '2026',
+    client: 'Zine Merch Line',
+    description: 'Karakter kepala kucing ekspresif dengan telinga tajam, kumis kaku, dan garis luar die-cut tebal.',
+    story: 'Desain stiker manga berdaya tahan visual tinggi: mudah dibaca dari kejauhan dengan garis tinta 4px mantap.',
+    tags: ['Sticker Pack', 'Cute Ink', 'Manga Cat'],
+    placeholderType: 'cat'
   },
   {
-    id: 'poster-bumi-lestari',
-    title: 'Katalog Visual: Langkah Kecil Kita',
+    id: 'bunga-grafis',
+    code: 'ART-09 // ILUS',
+    title: 'Bunga Mekar Grafis',
     category: 'Ilustrasi',
-    year: '2024',
-    client: 'Komunitas Bumi Teduh',
-    description: 'Seri ilustrasi infografis edukatif tentang kebiasaan ramah lingkungan sehari-hari.',
-    story: 'Menyajikan pesan ekologi tanpa kesan menggurui, lewat ilustrasi gaya komik ramah dengan karakter manusia dan tanaman yang saling merawat.',
-    aspect: 'landscape',
-    accentColor: '#58B98F',
-    bgGradient: 'from-[#CDEFE0] via-[#EEFAF4] to-[#FFD8C2]',
-    tags: ['Infographic Art', 'Social Campaign', 'Eco Art'],
-    placeholderType: 'poster-bumi',
-    imageSrc: ''
+    year: '2026',
+    client: 'Komik Alam Lestari',
+    description: 'Bunga matahari pop-art dengan kelopak simetris berputar dan pusaran halftone di intinya.',
+    story: 'Representasi grafis flora dengan pengaruh optical art dan motif screentone klasik cetakan mangaka.',
+    tags: ['Pop Art', 'Floral Graphic', 'Op-Art'],
+    placeholderType: 'flower'
   }
 ]

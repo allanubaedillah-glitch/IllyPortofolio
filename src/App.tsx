@@ -8,16 +8,16 @@ import { Footer } from './components/Footer'
 
 export const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-cream-100 text-plum-900 flex flex-col font-body selection:bg-peach selection:text-plum-900">
+    <div className="min-h-screen bg-white text-cobalt flex flex-col font-body selection:bg-cobalt selection:text-white">
       {/* Skip to Main Content Link for Keyboard Accessibility */}
       <a
         href="#karya"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-coral focus:text-cream-50 focus:font-bold focus:rounded-xl focus:shadow-sticker focus:border-2 focus:border-plum-900"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-cobalt focus:text-white focus:font-mono focus:font-bold focus:border-2 focus:border-white focus:shadow-cobalt"
       >
-        Langsung ke Galeri Karya
+        [ LANGSUNG KE GALERI KARYA ]
       </a>
 
-      {/* Sticky Blurred Navbar */}
+      {/* Sharp Cobalt Navbar */}
       <Navbar />
 
       {/* Main Semantic Page Content */}
@@ -28,7 +28,7 @@ export const App: React.FC = () => {
         <Contact />
       </main>
 
-      {/* Footer */}
+      {/* Solid Cobalt Footer */}
       <Footer />
     </div>
   )

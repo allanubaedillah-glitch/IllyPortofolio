@@ -7,41 +7,86 @@
     scroll-behavior: smooth;
     overflow-x: hidden;
     max-width: 100%;
+    background-color: #FFFFFF;
+    color: #2242F5;
   }
 
-  /* Focus visible accessibility styling */
+  /* Sharp Accessibility Focus Ring */
   :focus-visible {
-    outline: 3px solid #FF8A7A;
+    outline: 3px solid #2242F5;
     outline-offset: 3px;
-    border-radius: 6px;
   }
 
-  /* Custom scrollbar */
+  /* Custom Cobalt Scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #FFF8F1;
+    background: #FFFFFF;
+    border-left: 2px solid #2242F5;
   }
   ::-webkit-scrollbar-thumb {
-    background: #FFAF87;
-    border-radius: 9999px;
-    border: 2px solid #FFF8F1;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #FF8A7A;
+    background: #2242F5;
+    border: 2px solid #FFFFFF;
   }
 }
 
-/* Organic blob mask helpers */
-.blob-shape-1 {
-  border-radius: 64% 36% 47% 53% / 44% 59% 41% 56%;
+/* Halftone & Pattern Utilities */
+.bg-halftone-cobalt {
+  background-image: radial-gradient(#2242F5 1.5px, transparent 1.5px);
+  background-size: 8px 8px;
 }
 
-.blob-shape-2 {
-  border-radius: 41% 59% 51% 49% / 57% 41% 59% 43%;
+.bg-halftone-cobalt-dense {
+  background-image: radial-gradient(#2242F5 2px, transparent 2px);
+  background-size: 6px 6px;
 }
 
-.blob-shape-3 {
-  border-radius: 58% 42% 63% 37% / 37% 54% 46% 63%;
+.bg-halftone-white {
+  background-image: radial-gradient(#FFFFFF 1.5px, transparent 1.5px);
+  background-size: 8px 8px;
+}
+
+.bg-stripes-cobalt {
+  background: repeating-linear-gradient(
+    -45deg,
+    #2242F5,
+    #2242F5 8px,
+    #FFFFFF 8px,
+    #FFFFFF 16px
+  );
+}
+
+.bg-stripes-cobalt-sm {
+  background: repeating-linear-gradient(
+    -45deg,
+    #2242F5,
+    #2242F5 3px,
+    #FFFFFF 3px,
+    #FFFFFF 7px
+  );
+}
+
+.bg-stripes-white-sm {
+  background: repeating-linear-gradient(
+    -45deg,
+    #FFFFFF,
+    #FFFFFF 3px,
+    #2242F5 3px,
+    #2242F5 7px
+  );
+}
+
+.bg-crosshatch-cobalt {
+  background: 
+    linear-gradient(0deg, transparent 95%, #2242F5 95%),
+    linear-gradient(90deg, transparent 95%, #2242F5 95%);
+  background-size: 16px 16px;
+}
+
+.bg-crosshatch-white {
+  background: 
+    linear-gradient(0deg, transparent 95%, #FFFFFF 95%),
+    linear-gradient(90deg, transparent 95%, #FFFFFF 95%);
+  background-size: 16px 16px;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Mail, MessageSquare, Instagram, Copy, Check, ArrowUpRight, Sparkles } from 'lucide-react'
+import { Mail, MessageSquare, Instagram, Copy, Check, ArrowUpRight } from 'lucide-react'
 import { profileData } from '../data/profile'
-import { SparkleDoodle, StarDoodle } from './Doodles'
+import { SparkleStar, Starburst, BarcodeStamp } from './Doodles'
 
 export const Contact: React.FC = () => {
   const [copiedEmail, setCopiedEmail] = useState(false)
@@ -13,169 +13,191 @@ export const Contact: React.FC = () => {
     setTimeout(() => setCopiedEmail(false), 2500)
   }
 
-  // Format WhatsApp URL with encoded message
   const waUrl = `https://wa.me/${profileData.phoneWhatsapp}?text=${encodeURIComponent(
     profileData.whatsappMessage
   )}`
 
-  // Format Instagram URL
   const igUrl = `https://instagram.com/${profileData.instagram}`
 
   return (
     <section
       id="kontak"
-      className="py-20 md:py-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative"
+      className="py-20 md:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative bg-white"
       aria-label="Kontak dan Kolaborasi"
     >
-      {/* Decorative Floating Sparkles */}
-      <div className="absolute top-12 left-8 pointer-events-none hidden md:block">
-        <SparkleDoodle className="w-8 h-8 text-coral opacity-80" />
+      {/* Decorative Background Elements */}
+      <div className="absolute top-10 right-10 pointer-events-none hidden md:block">
+        <Starburst className="w-16 h-16 text-cobalt opacity-30" />
       </div>
-      <div className="absolute top-20 right-12 pointer-events-none hidden md:block">
-        <StarDoodle className="w-8 h-8 text-peach-medium opacity-80" />
+      <div className="absolute bottom-12 left-10 pointer-events-none hidden md:block">
+        <SparkleStar className="w-12 h-12 text-cobalt opacity-40" />
       </div>
 
-      {/* Heading & Call to Action */}
-      <div className="text-center max-w-2xl mx-auto mb-14">
-        <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-mint border-2 border-plum-900 shadow-sticker mb-4">
-          <Sparkles className="w-4 h-4 text-coral" />
-          <span className="font-display font-bold text-xs uppercase tracking-wider text-plum-900">
-            Ayo Berkolaborasi
-          </span>
+      {/* Header with Huge Impactful Lettering: "Punya ide seru? Mari kita wujudkan bersama!" */}
+      <div className="text-center max-w-4xl mx-auto mb-16">
+        
+        {/* Section Stamp */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-cobalt text-white border-3 border-cobalt shadow-cobalt mb-6 font-mono font-bold text-xs uppercase tracking-widest">
+          <SparkleStar className="w-4 h-4" inverted />
+          <span>TRANSMISSION // 03</span>
         </div>
 
-        <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-plum-900 mb-4 tracking-tight">
+        {/* Huge Impactful Lettering */}
+        <h2 className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-cobalt mb-6 tracking-tight uppercase leading-[1.05]">
           Punya ide seru? Mari kita wujudkan bersama!
         </h2>
 
-        <p className="text-plum-800 text-base sm:text-lg leading-relaxed">
-          Mau mendiskusikan character design, ilustrasi editorial, cover buku, atau sekadar bertukar sapa? Pintu studio selalu terbuka lebar.
+        <p className="font-mono text-cobalt text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          // Tersedia untuk kolaborasi visual, character licensing, ilustrasi buku komik, serta visual identity bertenaga tinggi.
         </p>
       </div>
 
-      {/* 3 Big Tactile CTA Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-16">
+      {/* 3 Blocky Heavily Outlined Contact Cards with Solid Cobalt Buttons & Social Icons */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         
         {/* Card 1: Email */}
-        <div className="group relative bg-cream-50 p-7 rounded-3xl sm:rounded-4xl border-3 border-plum-900 shadow-sticker hover:shadow-sticker-xl hover:-translate-y-1.5 transition-all flex flex-col justify-between">
-          <div>
-            <div className="w-14 h-14 rounded-2xl bg-peach border-2 border-plum-900 shadow-sticker flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform">
-              <Mail className="w-7 h-7 text-plum-900" />
-            </div>
-
-            <span className="text-xs font-display font-bold uppercase tracking-wider text-plum-800/80">
-              Kirim Surat Elektronik
+        <div className="group relative bg-white p-7 border-4 border-cobalt shadow-cobalt-lg hover:shadow-cobalt-xl hover:-translate-x-1 hover:-translate-y-1 transition-all flex flex-col justify-between">
+          
+          {/* Top Decorative Tag */}
+          <div className="flex items-center justify-between pb-4 border-b-2 border-cobalt mb-6">
+            <span className="font-mono font-bold text-xs uppercase tracking-widest text-cobalt">
+              [ CHANNEL 01 // EMAIL ]
             </span>
-            <h3 className="font-display font-bold text-xl sm:text-2xl text-plum-900 mt-1 mb-2">
-              Email Resmi
-            </h3>
-            <p className="text-sm text-plum-800 leading-relaxed mb-6">
-              Cocok untuk brief formal, permintaan proposal, atau proyek skala besar.
-            </p>
+            <SparkleStar className="w-5 h-5 text-cobalt" />
           </div>
 
           <div>
+            <div className="w-14 h-14 bg-cobalt text-white flex items-center justify-center border-3 border-cobalt shadow-cobalt-sm mb-4">
+              <Mail className="w-7 h-7 stroke-[2.5]" />
+            </div>
+
+            <h3 className="font-display font-extrabold text-2xl text-cobalt uppercase mb-2">
+              Email Resmi
+            </h3>
+            <p className="font-mono text-xs sm:text-sm text-cobalt leading-relaxed mb-6">
+              Pengiriman brief resmi, dokumen proyek, NDA, dan penawaran komersial.
+            </p>
+          </div>
+
+          <div className="pt-4 border-t-2 border-cobalt">
             <a
               href={`mailto:${profileData.email}`}
-              className="w-full flex items-center justify-between p-3.5 rounded-2xl bg-cream-100 hover:bg-peach border-2 border-plum-900 text-plum-900 font-display font-bold text-sm transition-colors mb-2"
+              className="w-full flex items-center justify-between p-3.5 bg-cobalt text-white font-mono font-bold text-xs uppercase tracking-wider border-2 border-cobalt hover:bg-white hover:text-cobalt transition-colors mb-2"
             >
               <span className="truncate">{profileData.email}</span>
-              <ArrowUpRight className="w-4 h-4 flex-shrink-0 text-coral" />
+              <ArrowUpRight className="w-4 h-4 flex-shrink-0 stroke-[3]" />
             </a>
 
             <button
               type="button"
               onClick={handleCopyEmail}
-              className="w-full inline-flex items-center justify-center gap-1.5 text-xs font-semibold text-plum-800 hover:text-plum-950 py-1 transition-colors"
+              className="w-full py-2 bg-white text-cobalt font-mono font-bold text-xs uppercase tracking-wider border-2 border-cobalt hover:bg-cobalt hover:text-white transition-colors flex items-center justify-center gap-1.5"
             >
               {copiedEmail ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-mint-dark" />
-                  <span className="text-mint-dark font-bold">Tersalin ke clipboard!</span>
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  <span>ALAMAT EMAIL TERSALIN!</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5" />
-                  <span>Salin alamat email</span>
+                  <Copy className="w-3.5 h-3.5 stroke-[2.5]" />
+                  <span>SALIN ALAMAT EMAIL</span>
                 </>
               )}
             </button>
           </div>
         </div>
 
-        {/* Card 2: WhatsApp (Highlighted Card) */}
-        <div className="group relative bg-mint-light p-7 rounded-3xl sm:rounded-4xl border-3 border-plum-900 shadow-sticker-lg hover:shadow-sticker-xl hover:-translate-y-1.5 transition-all flex flex-col justify-between">
-          {/* Badge Rekomendasi */}
-          <div className="absolute -top-3.5 right-6 bg-coral text-cream-50 font-display font-bold text-xs px-3 py-1 rounded-full border-2 border-plum-900 shadow-sm rotate-2">
-            Respon Cepat ⚡
+        {/* Card 2: WhatsApp (Highlighted Card with Inverted or Heavy Accent) */}
+        <div className="group relative bg-white p-7 border-4 border-cobalt shadow-cobalt-xl hover:-translate-x-1 hover:-translate-y-1 transition-all flex flex-col justify-between">
+          
+          {/* Top Decorative Tag with Highlight Badge */}
+          <div className="flex items-center justify-between pb-4 border-b-2 border-cobalt mb-6">
+            <span className="font-mono font-bold text-xs uppercase tracking-widest text-cobalt">
+              [ CHANNEL 02 // WHATSAPP ]
+            </span>
+            <span className="px-2 py-0.5 bg-cobalt text-white font-mono font-extrabold text-[10px] uppercase">
+              FAST DISPATCH ⚡
+            </span>
           </div>
 
           <div>
-            <div className="w-14 h-14 rounded-2xl bg-mint border-2 border-plum-900 shadow-sticker flex items-center justify-center mb-6 group-hover:-rotate-6 transition-transform">
-              <MessageSquare className="w-7 h-7 text-plum-900" />
+            <div className="w-14 h-14 bg-cobalt text-white flex items-center justify-center border-3 border-cobalt shadow-cobalt-sm mb-4">
+              <MessageSquare className="w-7 h-7 stroke-[2.5]" />
             </div>
 
-            <span className="text-xs font-display font-bold uppercase tracking-wider text-plum-800/80">
-              Obrolan Langsung
-            </span>
-            <h3 className="font-display font-bold text-xl sm:text-2xl text-plum-900 mt-1 mb-2">
-              WhatsApp
+            <h3 className="font-display font-extrabold text-2xl text-cobalt uppercase mb-2">
+              WhatsApp Direct
             </h3>
-            <p className="text-sm text-plum-800 leading-relaxed mb-6">
-              Ngobrol santai seputar ketersediaan jadwal, perkiraan biaya, dan tanya jawab cepat.
+            <p className="font-mono text-xs sm:text-sm text-cobalt leading-relaxed mb-6">
+              Diskusi cepat, cek ketersediaan jadwal gambar, atau sekadar tanya jawab teknis.
             </p>
           </div>
 
-          <div>
+          <div className="pt-4 border-t-2 border-cobalt">
             <a
               href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 p-3.5 rounded-2xl bg-coral hover:bg-coral-hover text-cream-50 font-display font-bold text-sm border-2 border-plum-900 shadow-sticker active:translate-y-0.5 transition-all"
+              className="w-full flex items-center justify-center gap-2 p-3.5 bg-cobalt text-white font-mono font-bold text-xs uppercase tracking-wider border-2 border-cobalt shadow-cobalt hover:bg-white hover:text-cobalt hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
             >
-              <span>Chat di WhatsApp</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <span>BUKA CHAT WHATSAPP</span>
+              <ArrowUpRight className="w-4 h-4 stroke-[3]" />
             </a>
-            <p className="text-[11px] text-center text-plum-800/70 mt-2 font-medium">
-              Pesan sapaan otomatis sudah disiapkan
+            <p className="font-mono text-[10px] text-center text-cobalt mt-2 font-bold uppercase">
+              // PRE-FILLED MESSAGE READY
             </p>
           </div>
         </div>
 
         {/* Card 3: Instagram */}
-        <div className="group relative bg-cream-50 p-7 rounded-3xl sm:rounded-4xl border-3 border-plum-900 shadow-sticker hover:shadow-sticker-xl hover:-translate-y-1.5 transition-all flex flex-col justify-between">
-          <div>
-            <div className="w-14 h-14 rounded-2xl bg-lilac border-2 border-plum-900 shadow-sticker flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform">
-              <Instagram className="w-7 h-7 text-plum-900" />
-            </div>
-
-            <span className="text-xs font-display font-bold uppercase tracking-wider text-plum-800/80">
-              Keseharian & Doodles
+        <div className="group relative bg-white p-7 border-4 border-cobalt shadow-cobalt-lg hover:shadow-cobalt-xl hover:-translate-x-1 hover:-translate-y-1 transition-all flex flex-col justify-between">
+          
+          {/* Top Decorative Tag */}
+          <div className="flex items-center justify-between pb-4 border-b-2 border-cobalt mb-6">
+            <span className="font-mono font-bold text-xs uppercase tracking-widest text-cobalt">
+              [ CHANNEL 03 // INSTAGRAM ]
             </span>
-            <h3 className="font-display font-bold text-xl sm:text-2xl text-plum-900 mt-1 mb-2">
-              Instagram
-            </h3>
-            <p className="text-sm text-plum-800 leading-relaxed mb-6">
-              Ikuti sketsa spontan, work in progress harian, dan reel proses berkarya.
-            </p>
+            <SparkleStar className="w-5 h-5 text-cobalt" />
           </div>
 
           <div>
+            <div className="w-14 h-14 bg-cobalt text-white flex items-center justify-center border-3 border-cobalt shadow-cobalt-sm mb-4">
+              <Instagram className="w-7 h-7 stroke-[2.5]" />
+            </div>
+
+            <h3 className="font-display font-extrabold text-2xl text-cobalt uppercase mb-2">
+              Instagram Daily
+            </h3>
+            <p className="font-mono text-xs sm:text-sm text-cobalt leading-relaxed mb-6">
+              Ikuti sketsa spontan harian, video proses inking, dan karya grafis eksperimental.
+            </p>
+          </div>
+
+          <div className="pt-4 border-t-2 border-cobalt">
             <a
               href={igUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-between p-3.5 rounded-2xl bg-cream-100 hover:bg-lilac/70 border-2 border-plum-900 text-plum-900 font-display font-bold text-sm transition-colors mb-2"
+              className="w-full flex items-center justify-between p-3.5 bg-white text-cobalt font-mono font-bold text-xs uppercase tracking-wider border-2 border-cobalt hover:bg-cobalt hover:text-white transition-colors mb-2"
             >
               <span>@{profileData.instagram}</span>
-              <ArrowUpRight className="w-4 h-4 text-coral" />
+              <ArrowUpRight className="w-4 h-4 text-cobalt stroke-[3]" />
             </a>
-            <p className="text-[11px] text-center text-plum-800/70 mt-2 font-medium">
-              Kirim DM untuk sapaan singkat
+            <p className="font-mono text-[10px] text-center text-cobalt mt-2 font-bold uppercase">
+              // DM OPEN FOR QUICK CHAT
             </p>
           </div>
         </div>
 
+      </div>
+
+      {/* Decorative Bottom Barcode */}
+      <div className="flex items-center justify-between border-t-4 border-cobalt pt-6">
+        <BarcodeStamp className="w-32 h-8 text-cobalt" />
+        <span className="font-mono font-bold text-xs text-cobalt uppercase tracking-widest">
+          COMMUNICATION PROTOCOL // #2242F5
+        </span>
       </div>
     </section>
   )

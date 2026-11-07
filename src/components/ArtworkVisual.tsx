@@ -8,276 +8,380 @@ interface ArtworkVisualProps {
 }
 
 export const ArtworkVisual: React.FC<ArtworkVisualProps> = ({ work, className = '', priority = false }) => {
-  // Jika gambar nyata disediakan
   if (work.imageSrc && work.imageSrc.trim() !== '') {
     return (
       <img
         src={work.imageSrc}
-        alt={`Karya visual: ${work.title} - ${work.category}`}
+        alt={`${work.title} - ${work.category}`}
         loading={priority ? 'eager' : 'lazy'}
-        className={`w-full h-full object-cover transition-transform duration-500 ${className}`}
+        className={`w-full h-full object-cover ${className}`}
       />
     )
   }
 
-  // Placeholder SVG vektor ilustrasi buatan sendiri dengan tema pastel
-  const renderSvgArtwork = () => {
+  // Pure Cobalt (#2242F5) & Stark White (#FFFFFF) Manga Ink & Halftone Artworks
+  const renderGraphicArtwork = () => {
     switch (work.placeholderType) {
-      case 'momo-mascot':
+      case 'bear':
         return (
-          <svg viewBox="0 0 400 450" className="w-full h-full p-4 drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Background Blob */}
-            <path d="M60 120C40 220 70 380 200 400C330 420 360 270 340 150C320 30 180 20 60 120Z" fill="#FFF0E6" />
+          <svg viewBox="0 0 400 400" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="ht-bear" width="8" height="8" patternUnits="userSpaceOnUse">
+                <circle cx="4" cy="4" r="2.2" fill="#2242F5" />
+              </pattern>
+            </defs>
+            {/* Background Halftone Halo */}
+            <circle cx="200" cy="210" r="150" fill="url(#ht-bear)" stroke="#2242F5" strokeWidth="4" />
+            <circle cx="200" cy="210" r="120" fill="#FFFFFF" stroke="#2242F5" strokeWidth="6" />
+
             {/* Bear Ears */}
-            <circle cx="130" cy="110" r="38" fill="#FFAF87" stroke="#2B2340" strokeWidth="6" />
-            <circle cx="130" cy="110" r="20" fill="#FFD8C2" />
-            <circle cx="270" cy="110" r="38" fill="#FFAF87" stroke="#2B2340" strokeWidth="6" />
-            <circle cx="270" cy="110" r="20" fill="#FFD8C2" />
-            {/* Chef Hat */}
-            <path d="M160 85C150 40 250 40 240 85Z" fill="#FFFFFF" stroke="#2B2340" strokeWidth="6" />
-            <rect x="165" y="80" width="70" height="20" rx="6" fill="#DCCFF5" stroke="#2B2340" strokeWidth="5" />
+            <circle cx="120" cy="120" r="42" fill="#FFFFFF" stroke="#2242F5" strokeWidth="7" />
+            <circle cx="120" cy="120" r="24" fill="url(#ht-bear)" />
+            <circle cx="280" cy="120" r="42" fill="#FFFFFF" stroke="#2242F5" strokeWidth="7" />
+            <circle cx="280" cy="120" r="24" fill="url(#ht-bear)" />
+
+            {/* Chef Hat with Ink Shadow */}
+            <path d="M150 90C140 30 260 30 250 90Z" fill="#FFFFFF" stroke="#2242F5" strokeWidth="7" />
+            <rect x="155" y="85" width="90" height="26" fill="#2242F5" />
+            <line x1="180" y1="50" x2="180" y2="85" stroke="#2242F5" strokeWidth="4" />
+            <line x1="205" y1="42" x2="205" y2="85" stroke="#2242F5" strokeWidth="4" />
+            <line x1="230" y1="52" x2="230" y2="85" stroke="#2242F5" strokeWidth="4" />
+
             {/* Head */}
-            <ellipse cx="200" cy="200" rx="100" ry="85" fill="#FFAF87" stroke="#2B2340" strokeWidth="7" />
-            {/* Cheeks */}
-            <circle cx="140" cy="225" r="16" fill="#FF8A7A" opacity="0.6" />
-            <circle cx="260" cy="225" r="16" fill="#FF8A7A" opacity="0.6" />
-            {/* Eyes */}
-            <ellipse cx="160" cy="190" rx="9" ry="12" fill="#2B2340" />
-            <circle cx="163" cy="186" r="3.5" fill="#FFFFFF" />
-            <ellipse cx="240" cy="190" rx="9" ry="12" fill="#2B2340" />
-            <circle cx="243" cy="186" r="3.5" fill="#FFFFFF" />
-            {/* Snout & Nose */}
-            <ellipse cx="200" cy="220" rx="32" ry="24" fill="#FFF8F1" stroke="#2B2340" strokeWidth="5" />
-            <path d="M190 212C195 208 205 208 210 212C208 219 192 219 190 212Z" fill="#2B2340" />
-            <path d="M200 220V232M193 230C197 235 203 235 207 230" stroke="#2B2340" strokeWidth="4" strokeLinecap="round" />
-            {/* Body & Apron */}
-            <path d="M130 280C110 320 110 370 120 410H280C290 370 290 320 270 280Z" fill="#FFAF87" stroke="#2B2340" strokeWidth="7" />
-            <path d="M150 285L200 340L250 285" fill="#CDEFE0" stroke="#2B2340" strokeWidth="5" />
-            <circle cx="200" cy="370" r="10" fill="#FF8A7A" stroke="#2B2340" strokeWidth="4" />
+            <circle cx="200" cy="210" r="95" fill="#FFFFFF" stroke="#2242F5" strokeWidth="8" />
+
+            {/* Eyes - Stylized Manga Ink */}
+            <circle cx="160" cy="195" r="12" fill="#2242F5" />
+            <circle cx="164" cy="190" r="4" fill="#FFFFFF" />
+            <circle cx="240" cy="195" r="12" fill="#2242F5" />
+            <circle cx="244" cy="190" r="4" fill="#FFFFFF" />
+
+            {/* Halftone Screentone Cheeks */}
+            <circle cx="140" cy="230" r="18" fill="url(#ht-bear)" stroke="#2242F5" strokeWidth="2" />
+            <circle cx="260" cy="230" r="18" fill="url(#ht-bear)" stroke="#2242F5" strokeWidth="2" />
+
+            {/* Snout & Mouth */}
+            <ellipse cx="200" cy="225" rx="35" ry="26" fill="#FFFFFF" stroke="#2242F5" strokeWidth="6" />
+            <polygon points="190,215 210,215 200,226" fill="#2242F5" />
+            <path d="M200 226V238M192 236C196 242 204 242 208 236" stroke="#2242F5" strokeWidth="5" strokeLinecap="round" />
+
             {/* Sparkles */}
-            <path d="M90 70L95 85L110 90L95 95L90 110L85 95L70 90L85 85Z" fill="#FF8A7A" />
-            <path d="M310 280L314 290L325 294L314 298L310 310L306 298L295 294L306 290Z" fill="#DCCFF5" />
+            <polygon points="80,80 84,95 99,99 84,103 80,118 76,103 61,99 76,95" fill="#2242F5" />
+            <polygon points="320,290 323,300 333,303 323,306 320,316 317,306 307,303 317,300" fill="#2242F5" />
           </svg>
         )
 
-      case 'kopi-senja':
+      case 'coffee-cup':
         return (
-          <svg viewBox="0 0 400 400" className="w-full h-full p-4 drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="200" cy="200" r="160" fill="#FFF0E6" stroke="#2B2340" strokeWidth="6" strokeDasharray="8 8" />
-            {/* Coffee Saucer & Cup */}
-            <ellipse cx="200" cy="280" rx="90" ry="24" fill="#CDEFE0" stroke="#2B2340" strokeWidth="6" />
-            <ellipse cx="200" cy="275" rx="70" ry="16" fill="#EEFAF4" />
-            <path d="M140 220C140 280 260 280 260 220Z" fill="#DCCFF5" stroke="#2B2340" strokeWidth="6" />
-            <path d="M255 230C280 230 280 260 255 260" stroke="#2B2340" strokeWidth="6" strokeLinecap="round" />
-            <ellipse cx="200" cy="220" rx="60" ry="18" fill="#5A3E2E" stroke="#2B2340" strokeWidth="5" />
-            {/* Latte Heart Art */}
-            <path d="M190 216C185 210 195 206 200 214C205 206 215 210 210 216L200 224Z" fill="#FFF8F1" />
-            {/* Steam Aromatics */}
-            <path d="M185 180C175 160 195 140 185 120" stroke="#FFAF87" strokeWidth="5" strokeLinecap="round" />
-            <path d="M215 175C225 155 205 135 215 115" stroke="#FF8A7A" strokeWidth="5" strokeLinecap="round" />
-            {/* Croissant sticker */}
-            <g transform="translate(80, 100) rotate(-15)">
-              <ellipse cx="40" cy="30" rx="30" ry="18" fill="#FFAF87" stroke="#2B2340" strokeWidth="4" />
-              <path d="M20 20C30 35 50 35 60 20" stroke="#2B2340" strokeWidth="3" />
+          <svg viewBox="0 0 400 400" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="ht-coffee" width="10" height="10" patternUnits="userSpaceOnUse">
+                <circle cx="5" cy="5" r="2.8" fill="#2242F5" />
+              </pattern>
+              <pattern id="diag-croissant" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="8" stroke="#2242F5" strokeWidth="3" />
+              </pattern>
+            </defs>
+            {/* Outer Target Circle */}
+            <circle cx="200" cy="200" r="160" fill="#FFFFFF" stroke="#2242F5" strokeWidth="6" strokeDasharray="12 8" />
+            <circle cx="200" cy="200" r="130" fill="url(#ht-coffee)" />
+            <circle cx="200" cy="200" r="105" fill="#FFFFFF" stroke="#2242F5" strokeWidth="6" />
+
+            {/* Saucer */}
+            <ellipse cx="200" cy="280" rx="90" ry="24" fill="#FFFFFF" stroke="#2242F5" strokeWidth="8" />
+            <ellipse cx="200" cy="275" rx="70" ry="14" fill="#2242F5" />
+
+            {/* Cup */}
+            <path d="M140 210C140 280 260 280 260 210Z" fill="#FFFFFF" stroke="#2242F5" strokeWidth="8" />
+            <path d="M255 220C285 220 285 255 255 255" stroke="#2242F5" strokeWidth="8" strokeLinecap="round" />
+            <ellipse cx="200" cy="210" rx="60" ry="18" fill="#2242F5" />
+            {/* Latte Art Foam in Negative White */}
+            <ellipse cx="200" cy="210" rx="42" ry="11" fill="#FFFFFF" />
+            <path d="M192 208C188 202 196 200 200 206C204 200 212 202 208 208L200 214Z" fill="#2242F5" />
+
+            {/* Dynamic Manga Steam Lines */}
+            <path d="M180 170C165 145 195 125 180 95" stroke="#2242F5" strokeWidth="6" strokeLinecap="round" />
+            <path d="M220 165C235 140 205 120 220 90" stroke="#2242F5" strokeWidth="6" strokeLinecap="round" />
+
+            {/* Graphic Croissant */}
+            <g transform="translate(80, 80) rotate(-15)">
+              <ellipse cx="30" cy="20" rx="26" ry="16" fill="url(#diag-croissant)" stroke="#2242F5" strokeWidth="5" />
+              <path d="M14 12C22 25 38 25 46 12" stroke="#2242F5" strokeWidth="4" />
             </g>
           </svg>
         )
 
-      case 'hutan-fantasi':
+      case 'mountains':
         return (
-          <svg viewBox="0 0 500 350" className="w-full h-full p-4" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Moon & Night sky backdrop */}
-            <rect x="20" y="20" width="460" height="310" rx="30" fill="#2B2340" />
-            <circle cx="380" cy="90" r="50" fill="#DCCFF5" opacity="0.8" />
-            <circle cx="370" cy="85" r="45" fill="#2B2340" />
-            {/* Layered Mountains */}
-            <path d="M20 290L140 170L240 280L360 150L480 300V330H20Z" fill="#3D3356" />
-            <path d="M60 330L190 200L290 310L420 180L480 270V330H60Z" fill="#58B98F" opacity="0.7" />
-            {/* Glowing Trees */}
-            <polygon points="120,290 85,330 155,330" fill="#CDEFE0" stroke="#2B2340" strokeWidth="4" />
-            <polygon points="180,260 145,310 215,310" fill="#A3E7C9" stroke="#2B2340" strokeWidth="4" />
-            <polygon points="320,270 290,320 350,320" fill="#DCCFF5" stroke="#2B2340" strokeWidth="4" />
-            {/* Fireflies with glowing halos */}
-            <circle cx="160" cy="140" r="14" fill="#FF8A7A" opacity="0.3" />
-            <circle cx="160" cy="140" r="6" fill="#FFF0E6" />
-            <circle cx="280" cy="110" r="18" fill="#CDEFE0" opacity="0.4" />
-            <circle cx="280" cy="110" r="7" fill="#FFFFFF" />
-            <circle cx="230" cy="190" r="12" fill="#FFAF87" opacity="0.4" />
-            <circle cx="230" cy="190" r="5" fill="#FFF8F1" />
-            <circle cx="340" cy="220" r="15" fill="#DCCFF5" opacity="0.5" />
-            <circle cx="340" cy="220" r="6" fill="#FFFFFF" />
+          <svg viewBox="0 0 400 400" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="stripes-mtn" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="8" stroke="#FFFFFF" strokeWidth="3" />
+              </pattern>
+            </defs>
+            {/* Deep Solid Cobalt Frame */}
+            <rect x="20" y="20" width="360" height="360" fill="#2242F5" stroke="#2242F5" strokeWidth="8" />
+
+            {/* Stark White Crescent Moon */}
+            <circle cx="310" cy="90" r="45" fill="#FFFFFF" />
+            <circle cx="295" cy="80" r="42" fill="#2242F5" />
+
+            {/* Manga Stars */}
+            <polygon points="90,70 93,80 103,83 93,86 90,96 87,86 77,83 87,80" fill="#FFFFFF" />
+            <polygon points="170,110 172,118 180,120 172,122 170,130 168,122 160,120 168,118" fill="#FFFFFF" />
+            <polygon points="240,60 242,66 248,68 242,70 240,76 238,70 232,68 238,66" fill="#FFFFFF" />
+
+            {/* Rear Mountain with White Diagonal Hatching */}
+            <polygon points="20,380 150,160 280,380" fill="url(#stripes-mtn)" stroke="#FFFFFF" strokeWidth="6" />
+
+            {/* Foreground Solid Mountain in Stark White */}
+            <polygon points="120,380 260,180 380,380" fill="#FFFFFF" stroke="#2242F5" strokeWidth="7" />
+            {/* Foreground Ridge Shadow in Cobalt */}
+            <polygon points="260,180 380,380 260,380" fill="#2242F5" />
+
+            {/* Mountain Base Line */}
+            <line x1="20" y1="380" x2="380" y2="380" stroke="#FFFFFF" strokeWidth="8" />
           </svg>
         )
 
-      case 'robot-kebun':
+      case 'robot':
         return (
-          <svg viewBox="0 0 400 450" className="w-full h-full p-4" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Antenna with bulb */}
-            <line x1="200" y1="110" x2="200" y2="70" stroke="#2B2340" strokeWidth="6" />
-            <circle cx="200" cy="65" r="16" fill="#FF8A7A" stroke="#2B2340" strokeWidth="5" />
-            {/* Robot Head */}
-            <rect x="130" y="110" width="140" height="110" rx="24" fill="#CDEFE0" stroke="#2B2340" strokeWidth="6" />
-            {/* Screen visor */}
-            <rect x="150" y="130" width="100" height="50" rx="14" fill="#2B2340" />
-            {/* Glowing friendly eyes */}
-            <circle cx="175" cy="155" r="9" fill="#FFAF87" />
-            <circle cx="225" cy="155" r="9" fill="#FFAF87" />
-            {/* Cheerful mouth */}
-            <path d="M185 195C193 203 207 203 215 195" stroke="#2B2340" strokeWidth="5" strokeLinecap="round" />
-            {/* Neck joint */}
-            <rect x="180" y="220" width="40" height="20" rx="4" fill="#DCCFF5" stroke="#2B2340" strokeWidth="5" />
-            {/* Body */}
-            <rect x="115" y="240" width="170" height="130" rx="30" fill="#DCCFF5" stroke="#2B2340" strokeWidth="6" />
-            {/* Watering can in arm */}
-            <path d="M80 270L120 280M280 280L320 290" stroke="#2B2340" strokeWidth="6" strokeLinecap="round" />
-            {/* Flower growing in chest gauge */}
-            <circle cx="200" cy="305" r="28" fill="#FFF8F1" stroke="#2B2340" strokeWidth="4" />
-            <circle cx="200" cy="305" r="10" fill="#FF8A7A" />
-            <path d="M200 290V280M200 320V330M185 305H175M215 305H225" stroke="#58B98F" strokeWidth="4" strokeLinecap="round" />
-            {/* Sunflower bud */}
-            <circle cx="330" cy="310" r="14" fill="#FFAF87" stroke="#2B2340" strokeWidth="4" />
-            <path d="M330 324V360" stroke="#58B98F" strokeWidth="5" strokeLinecap="round" />
-          </svg>
-        )
-
-      case 'festival-musim-semi':
-        return (
-          <svg viewBox="0 0 400 450" className="w-full h-full p-4" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Clouds */}
-            <ellipse cx="120" cy="80" rx="50" ry="24" fill="#FFFFFF" opacity="0.9" />
-            <ellipse cx="280" cy="140" rx="60" ry="28" fill="#FFFFFF" opacity="0.9" />
-            {/* Big Diamond Kite */}
-            <g transform="translate(140, 100) rotate(15)">
-              <polygon points="50,0 100,70 50,140 0,70" fill="#FF8A7A" stroke="#2B2340" strokeWidth="5" />
-              <line x1="50" y1="0" x2="50" y2="140" stroke="#2B2340" strokeWidth="4" />
-              <line x1="0" y1="70" x2="100" y2="70" stroke="#2B2340" strokeWidth="4" />
-              {/* Ribbons */}
-              <path d="M50 140C60 170 30 190 55 220" stroke="#2B2340" strokeWidth="3.5" strokeDasharray="6 4" />
-              <polygon points="52,165 64,168 55,178" fill="#CDEFE0" stroke="#2B2340" strokeWidth="2" />
-              <polygon points="36,195 48,198 39,208" fill="#DCCFF5" stroke="#2B2340" strokeWidth="2" />
-            </g>
-            {/* Small Bird Kite */}
-            <path d="M70 240C90 220 120 220 140 240C160 220 190 220 210 240" stroke="#2B2340" strokeWidth="5" strokeLinecap="round" />
-            {/* Sunny Hill Ground */}
-            <path d="M0 380C120 330 280 340 400 390V450H0Z" fill="#CDEFE0" stroke="#2B2340" strokeWidth="6" />
-          </svg>
-        )
-
-      case 'ruang-baca':
-        return (
-          <svg viewBox="0 0 400 400" className="w-full h-full p-4" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Cozy Window */}
-            <rect x="70" y="50" width="140" height="160" rx="16" fill="#DCCFF5" stroke="#2B2340" strokeWidth="5" />
-            <line x1="140" y1="50" x2="140" y2="210" stroke="#2B2340" strokeWidth="4" />
-            <line x1="70" y1="130" x2="210" y2="130" stroke="#2B2340" strokeWidth="4" />
-            {/* Hanging Pothos Plant */}
-            <path d="M120 40V70" stroke="#2B2340" strokeWidth="3" />
-            <ellipse cx="120" cy="75" rx="16" ry="10" fill="#FFAF87" stroke="#2B2340" strokeWidth="3" />
-            <path d="M110 85C100 110 130 130 115 150" stroke="#58B98F" strokeWidth="4" strokeLinecap="round" />
-            {/* Warm Reading Lamp */}
-            <path d="M260 90L290 140H230Z" fill="#FF8A7A" stroke="#2B2340" strokeWidth="5" />
-            <path d="M260 140V280" stroke="#2B2340" strokeWidth="5" />
-            <path d="M235 280H285" stroke="#2B2340" strokeWidth="6" strokeLinecap="round" />
-            {/* Lamp Light Glow */}
-            <polygon points="230,140 180,320 340,320 290,140" fill="#FFEADB" opacity="0.45" />
-            {/* Stack of books on shelf */}
-            <rect x="80" y="270" width="130" height="24" rx="4" fill="#CDEFE0" stroke="#2B2340" strokeWidth="4" />
-            <rect x="95" y="246" width="105" height="24" rx="4" fill="#FFD8C2" stroke="#2B2340" strokeWidth="4" />
-            <rect x="110" y="222" width="80" height="24" rx="4" fill="#DCCFF5" stroke="#2B2340" strokeWidth="4" />
-          </svg>
-        )
-
-      case 'kemasan-teh':
-        return (
-          <svg viewBox="0 0 400 450" className="w-full h-full p-4" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Canister Body */}
-            <rect x="110" y="100" width="180" height="260" rx="36" fill="#FFF8F1" stroke="#2B2340" strokeWidth="6" />
-            {/* Wooden Lid */}
-            <rect x="120" y="70" width="160" height="36" rx="14" fill="#FFAF87" stroke="#2B2340" strokeWidth="5" />
-            {/* Label Center Wrap */}
-            <rect x="110" y="150" width="180" height="150" fill="#CDEFE0" stroke="#2B2340" strokeWidth="4" />
-            {/* Chamomile Botanical Flower */}
-            <g transform="translate(200, 215)">
-              <circle cx="0" cy="0" r="16" fill="#FF8A7A" stroke="#2B2340" strokeWidth="3" />
-              {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
-                <ellipse
-                  key={i}
-                  cx="0"
-                  cy="-28"
-                  rx="7"
-                  ry="14"
-                  fill="#FFFFFF"
-                  stroke="#2B2340"
-                  strokeWidth="2.5"
-                  transform={`rotate(${angle})`}
-                />
+          <svg viewBox="0 0 400 400" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="ht-bot" width="7" height="7" patternUnits="userSpaceOnUse">
+                <circle cx="3.5" cy="3.5" r="2.2" fill="#2242F5" />
+              </pattern>
+            </defs>
+            {/* Background Sunburst */}
+            <g transform="translate(200, 200)">
+              {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((deg) => (
+                <line key={deg} x1="0" y1="0" x2="180" y2="0" stroke="#2242F5" strokeWidth="3" strokeDasharray="6 6" transform={`rotate(${deg})`} />
               ))}
             </g>
-            <text x="200" y="280" textAnchor="middle" fill="#2B2340" fontSize="13" fontWeight="bold" fontFamily="sans-serif">
-              CHAMOMILE BLISS
-            </text>
-            <text x="200" y="340" textAnchor="middle" fill="#FFAF87" fontSize="11" fontWeight="bold" fontFamily="sans-serif">
-              ✦ 100% ARTISAN LEAF ✦
-            </text>
+
+            {/* Antenna */}
+            <line x1="200" y1="100" x2="200" y2="50" stroke="#2242F5" strokeWidth="7" />
+            <circle cx="200" cy="45" r="14" fill="#2242F5" stroke="#FFFFFF" strokeWidth="3" />
+            <circle cx="200" cy="45" r="6" fill="#FFFFFF" />
+
+            {/* Head Box */}
+            <rect x="125" y="100" width="150" height="110" fill="#FFFFFF" stroke="#2242F5" strokeWidth="8" />
+            {/* Screen Visor in Solid Cobalt */}
+            <rect x="145" y="120" width="110" height="50" fill="#2242F5" />
+            {/* Glowing Eyes in Stark White */}
+            <circle cx="175" cy="145" r="10" fill="#FFFFFF" />
+            <circle cx="225" cy="145" r="10" fill="#FFFFFF" />
+            {/* Smile in White */}
+            <path d="M190 158C195 163 205 163 210 158" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="round" />
+
+            {/* Neck Joint */}
+            <rect x="180" y="210" width="40" height="20" fill="url(#ht-bot)" stroke="#2242F5" strokeWidth="5" />
+
+            {/* Body */}
+            <rect x="110" y="230" width="180" height="130" fill="#FFFFFF" stroke="#2242F5" strokeWidth="8" />
+            {/* Center Gauge in Halftone */}
+            <circle cx="200" cy="295" r="32" fill="url(#ht-bot)" stroke="#2242F5" strokeWidth="5" />
+            <circle cx="200" cy="295" r="12" fill="#2242F5" />
+
+            {/* Sprout Plant in Arm */}
+            <path d="M290 280H340V330" stroke="#2242F5" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M340 280C340 250 370 250 370 280Z" fill="#2242F5" />
+            <path d="M340 270C315 255 330 235 340 250Z" fill="#FFFFFF" stroke="#2242F5" strokeWidth="4" />
           </svg>
         )
 
-      case 'stiker-kucing':
+      case 'kite':
         return (
-          <svg viewBox="0 0 400 400" className="w-full h-full p-4" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Cat with White Sticker Outline */}
-            <g transform="translate(40, 40)">
-              {/* Outer white die-cut contour */}
-              <circle cx="160" cy="160" r="140" fill="#FFFFFF" stroke="#2B2340" strokeWidth="5" strokeDasharray="6 6" />
-              {/* Cat Ears */}
-              <polygon points="90,130 110,60 160,110" fill="#FF8A7A" stroke="#2B2340" strokeWidth="6" />
-              <polygon points="105,120 115,80 145,110" fill="#FFF0E6" />
-              <polygon points="230,130 210,60 160,110" fill="#FF8A7A" stroke="#2B2340" strokeWidth="6" />
-              <polygon points="215,120 205,80 175,110" fill="#FFF0E6" />
-              {/* Cat Face */}
-              <ellipse cx="160" cy="160" rx="80" ry="70" fill="#FFAF87" stroke="#2B2340" strokeWidth="6" />
-              {/* Sleepy Happy Eyes */}
-              <path d="M125 155C135 145 145 155 145 155" stroke="#2B2340" strokeWidth="5" strokeLinecap="round" />
-              <path d="M175 155C185 145 195 155 195 155" stroke="#2B2340" strokeWidth="5" strokeLinecap="round" />
-              {/* Pink Nose & Whiskers */}
-              <polygon points="160,165 155,172 165,172" fill="#FF705F" />
-              <path d="M160 172V178M154 176C157 180 163 180 166 176" stroke="#2B2340" strokeWidth="3" />
-              <line x1="100" y1="165" x2="70" y2="160" stroke="#2B2340" strokeWidth="3.5" strokeLinecap="round" />
-              <line x1="100" y1="175" x2="70" y2="180" stroke="#2B2340" strokeWidth="3.5" strokeLinecap="round" />
-              <line x1="220" y1="165" x2="250" y2="160" stroke="#2B2340" strokeWidth="3.5" strokeLinecap="round" />
-              <line x1="220" y1="175" x2="250" y2="180" stroke="#2B2340" strokeWidth="3.5" strokeLinecap="round" />
+          <svg viewBox="0 0 400 400" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="ht-kite" width="8" height="8" patternUnits="userSpaceOnUse">
+                <circle cx="4" cy="4" r="2.5" fill="#2242F5" />
+              </pattern>
+              <pattern id="stripes-kite" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="6" stroke="#2242F5" strokeWidth="2.5" />
+              </pattern>
+            </defs>
+            {/* Manga Action Speedlines */}
+            <g stroke="#2242F5" strokeWidth="3">
+              <line x1="20" y1="20" x2="140" y2="100" />
+              <line x1="10" y1="60" x2="120" y2="120" />
+              <line x1="30" y1="120" x2="130" y2="160" />
+              <line x1="380" y1="380" x2="260" y2="300" strokeDasharray="8 6" />
+              <line x1="350" y1="340" x2="250" y2="270" strokeDasharray="8 6" />
+            </g>
+
+            {/* Diamond Kite */}
+            <g transform="translate(140, 70) rotate(18)">
+              {/* Top Left Quadrant Solid Cobalt */}
+              <polygon points="50,0 100,80 50,80" fill="#2242F5" stroke="#2242F5" strokeWidth="6" />
+              {/* Top Right Quadrant Halftone */}
+              <polygon points="50,0 0,80 50,80" fill="url(#ht-kite)" stroke="#2242F5" strokeWidth="6" />
+              {/* Bottom Left Quadrant Stripes */}
+              <polygon points="50,160 100,80 50,80" fill="url(#stripes-kite)" stroke="#2242F5" strokeWidth="6" />
+              {/* Bottom Right Quadrant Stark White */}
+              <polygon points="50,160 0,80 50,80" fill="#FFFFFF" stroke="#2242F5" strokeWidth="6" />
+
+              {/* Central Cross Frame */}
+              <line x1="50" y1="0" x2="50" y2="160" stroke="#FFFFFF" strokeWidth="4" />
+              <line x1="0" y1="80" x2="100" y2="80" stroke="#FFFFFF" strokeWidth="4" />
+
+              {/* Tail Ribbon with Bows */}
+              <path d="M50 160C80 200 20 230 60 270" stroke="#2242F5" strokeWidth="5" strokeLinecap="round" />
+              <polygon points="55,190 70,185 62,200" fill="#2242F5" />
+              <polygon points="30,225 15,220 23,235" fill="url(#ht-kite)" stroke="#2242F5" strokeWidth="2" />
+              <polygon points="58,260 74,255 66,270" fill="#2242F5" />
             </g>
           </svg>
         )
 
-      case 'poster-bumi':
+      case 'window':
+        return (
+          <svg viewBox="0 0 400 400" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="ht-window" width="9" height="9" patternUnits="userSpaceOnUse">
+                <circle cx="4.5" cy="4.5" r="2.8" fill="#2242F5" />
+              </pattern>
+            </defs>
+            {/* Attic Window Frame in Bold Ink */}
+            <rect x="70" y="40" width="150" height="180" fill="#FFFFFF" stroke="#2242F5" strokeWidth="8" />
+            <line x1="145" y1="40" x2="145" y2="220" stroke="#2242F5" strokeWidth="7" />
+            <line x1="70" y1="120" x2="220" y2="120" stroke="#2242F5" strokeWidth="7" />
+            {/* Night Screentone outside window pane */}
+            <rect x="74" y="44" width="67" height="72" fill="url(#ht-window)" />
+            <rect x="149" y="124" width="67" height="92" fill="url(#ht-window)" />
+
+            {/* Lamp Beam Negative Space Triangle */}
+            <polygon points="290,90 220,340 370,340" fill="#2242F5" />
+            <polygon points="280,105 235,330 355,330" fill="#FFFFFF" />
+
+            {/* Desk Lamp */}
+            <path d="M260 70L300 100H240Z" fill="#2242F5" />
+            <path d="M270 100V260" stroke="#2242F5" strokeWidth="7" strokeLinecap="round" />
+            <rect x="250" y="260" width="40" height="12" fill="#2242F5" />
+
+            {/* Stack of Manga & Books */}
+            <rect x="70" y="290" width="130" height="26" fill="#FFFFFF" stroke="#2242F5" strokeWidth="6" />
+            <line x1="90" y1="290" x2="90" y2="316" stroke="#2242F5" strokeWidth="4" />
+            <rect x="85" y="264" width="105" height="26" fill="#2242F5" stroke="#2242F5" strokeWidth="4" />
+            <rect x="100" y="240" width="80" height="24" fill="#FFFFFF" stroke="#2242F5" strokeWidth="5" />
+            <line x1="120" y1="240" x2="120" y2="264" stroke="#2242F5" strokeWidth="4" />
+          </svg>
+        )
+
+      case 'jar':
+        return (
+          <svg viewBox="0 0 400 400" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="ht-jar" width="8" height="8" patternUnits="userSpaceOnUse">
+                <circle cx="4" cy="4" r="2.5" fill="#2242F5" />
+              </pattern>
+            </defs>
+            {/* Background Arch Line */}
+            <path d="M70 360V140C70 70 330 70 330 140V360" stroke="#2242F5" strokeWidth="4" strokeDasharray="10 8" />
+
+            {/* Jar Glass Outline */}
+            <rect x="100" y="90" width="200" height="270" rx="30" fill="#FFFFFF" stroke="#2242F5" strokeWidth="8" />
+            
+            {/* Lid */}
+            <rect x="120" y="60" width="160" height="35" rx="8" fill="#2242F5" stroke="#2242F5" strokeWidth="4" />
+            <rect x="140" y="50" width="120" height="12" fill="#FFFFFF" stroke="#2242F5" strokeWidth="4" />
+
+            {/* Label in Deep Cobalt */}
+            <rect x="100" y="160" width="200" height="130" fill="#2242F5" />
+            
+            {/* Botanical Flower in Center Label */}
+            <circle cx="200" cy="225" r="28" fill="#FFFFFF" />
+            <circle cx="200" cy="225" r="12" fill="url(#ht-jar)" stroke="#2242F5" strokeWidth="3" />
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
+              <line key={deg} x1="200" y1="225" x2="200" y2="198" stroke="#2242F5" strokeWidth="4" strokeLinecap="round" transform={`rotate(${deg} 200 225)`} />
+            ))}
+
+            <text x="200" y="315" textAnchor="middle" fill="#2242F5" fontSize="13" fontWeight="bold" fontFamily="monospace" letterSpacing="3">
+              ★ BOTANICAL INK ★
+            </text>
+          </svg>
+        )
+
+      case 'cat':
+        return (
+          <svg viewBox="0 0 400 400" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="ht-cat" width="7" height="7" patternUnits="userSpaceOnUse">
+                <circle cx="3.5" cy="3.5" r="2.2" fill="#2242F5" />
+              </pattern>
+            </defs>
+            {/* Heavy Manga Die-cut Outline */}
+            <circle cx="200" cy="200" r="160" fill="#FFFFFF" stroke="#2242F5" strokeWidth="8" />
+            <circle cx="200" cy="200" r="148" fill="none" stroke="#2242F5" strokeWidth="3" strokeDasharray="8 6" />
+
+            {/* Cat Ears */}
+            <polygon points="120,160 140,70 190,130" fill="#2242F5" stroke="#2242F5" strokeWidth="6" />
+            <polygon points="135,145 145,95 175,135" fill="#FFFFFF" />
+            
+            <polygon points="280,160 260,70 210,130" fill="#2242F5" stroke="#2242F5" strokeWidth="6" />
+            <polygon points="265,145 255,95 225,135" fill="#FFFFFF" />
+
+            {/* Cat Face */}
+            <ellipse cx="200" cy="210" rx="95" ry="80" fill="#FFFFFF" stroke="#2242F5" strokeWidth="8" />
+
+            {/* Happy Curved Wink Eyes */}
+            <path d="M150 195C160 185 175 185 185 195" stroke="#2242F5" strokeWidth="7" strokeLinecap="round" />
+            <path d="M215 195C225 185 240 185 250 195" stroke="#2242F5" strokeWidth="7" strokeLinecap="round" />
+
+            {/* Halftone Screentone Cheeks */}
+            <ellipse cx="140" cy="225" rx="18" ry="12" fill="url(#ht-cat)" />
+            <ellipse cx="260" cy="225" rx="18" ry="12" fill="url(#ht-cat)" />
+
+            {/* Nose & Whiskers */}
+            <polygon points="195,210 205,210 200,218" fill="#2242F5" />
+            <path d="M200 218V226M192 224C196 230 204 230 208 224" stroke="#2242F5" strokeWidth="5" strokeLinecap="round" />
+            
+            {/* Sharp Manga Whiskers */}
+            <line x1="120" y1="210" x2="60" y2="195" stroke="#2242F5" strokeWidth="6" strokeLinecap="round" />
+            <line x1="120" y1="225" x2="65" y2="235" stroke="#2242F5" strokeWidth="6" strokeLinecap="round" />
+            <line x1="280" y1="210" x2="340" y2="195" stroke="#2242F5" strokeWidth="6" strokeLinecap="round" />
+            <line x1="280" y1="225" x2="335" y2="235" stroke="#2242F5" strokeWidth="6" strokeLinecap="round" />
+          </svg>
+        )
+
+      case 'flower':
       default:
         return (
-          <svg viewBox="0 0 500 350" className="w-full h-full p-4" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="20" y="20" width="460" height="310" rx="28" fill="#EEFAF4" stroke="#2B2340" strokeWidth="5" />
-            {/* Friendly Planet Earth */}
-            <circle cx="250" cy="175" r="100" fill="#CDEFE0" stroke="#2B2340" strokeWidth="6" />
-            {/* Continents */}
-            <path d="M200 130C210 110 240 120 250 140C260 160 220 180 200 160Z" fill="#58B98F" />
-            <path d="M260 190C280 180 310 200 290 220C270 230 250 210 260 190Z" fill="#58B98F" />
-            {/* Cheerful Smiley Face on Earth */}
-            <circle cx="230" cy="170" r="6" fill="#2B2340" />
-            <circle cx="270" cy="170" r="6" fill="#2B2340" />
-            <path d="M240 190C246 198 254 198 260 190" stroke="#2B2340" strokeWidth="4" strokeLinecap="round" />
-            <circle cx="218" cy="180" r="8" fill="#FF8A7A" opacity="0.6" />
-            <circle cx="282" cy="180" r="8" fill="#FF8A7A" opacity="0.6" />
-            {/* Sprout atop */}
-            <path d="M250 75V55" stroke="#2B2340" strokeWidth="4" strokeLinecap="round" />
-            <path d="M250 55C240 45 225 55 235 65C245 75 250 55 250 55Z" fill="#58B98F" stroke="#2B2340" strokeWidth="3" />
-            <path d="M250 60C260 50 275 60 265 70C255 80 250 60 250 60Z" fill="#58B98F" stroke="#2B2340" strokeWidth="3" />
+          <svg viewBox="0 0 400 400" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="ht-flower" width="8" height="8" patternUnits="userSpaceOnUse">
+                <circle cx="4" cy="4" r="2.8" fill="#2242F5" />
+              </pattern>
+            </defs>
+            {/* Optical Rotating Starburst Frame */}
+            <circle cx="200" cy="200" r="160" fill="#2242F5" />
+            <circle cx="200" cy="200" r="140" fill="#FFFFFF" stroke="#2242F5" strokeWidth="6" />
+
+            {/* 12 Sharp Manga Floral Petals */}
+            {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((deg, i) => (
+              <path
+                key={deg}
+                d="M200 200L185 110C190 90 210 90 215 110Z"
+                fill={i % 2 === 0 ? '#2242F5' : '#FFFFFF'}
+                stroke="#2242F5"
+                strokeWidth="5"
+                transform={`rotate(${deg} 200 200)`}
+              />
+            ))}
+
+            {/* Center Screentone Disc */}
+            <circle cx="200" cy="200" r="50" fill="#FFFFFF" stroke="#2242F5" strokeWidth="8" />
+            <circle cx="200" cy="200" r="42" fill="url(#ht-flower)" />
+            <circle cx="200" cy="200" r="18" fill="#2242F5" />
+            <circle cx="200" cy="200" r="6" fill="#FFFFFF" />
           </svg>
         )
     }
   }
 
   return (
-    <div className={`w-full h-full bg-gradient-to-br ${work.bgGradient} flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-500 ease-out select-none`}>
-      {renderSvgArtwork()}
+    <div className="w-full h-full bg-white flex items-center justify-center relative overflow-hidden select-none border-b-4 border-cobalt">
+      {renderGraphicArtwork()}
     </div>
   )
 }
