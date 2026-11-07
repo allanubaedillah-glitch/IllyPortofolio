@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  /* Focus visible accessibility styling */
+  :focus-visible {
+    outline: 3px solid #FF8A7A;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #FFF8F1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #FFAF87;
+    border-radius: 9999px;
+    border: 2px solid #FFF8F1;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FF8A7A;
+  }
+}
+
+/* Organic blob mask helpers */
+.blob-shape-1 {
+  border-radius: 64% 36% 47% 53% / 44% 59% 41% 56%;
+}
+
+.blob-shape-2 {
+  border-radius: 41% 59% 51% 49% / 57% 41% 59% 43%;
+}
+
+.blob-shape-3 {
+  border-radius: 58% 42% 63% 37% / 37% 54% 46% 63%;
+}
